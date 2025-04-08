@@ -6,7 +6,7 @@ from knockknock import slack_sender
 from transformers import *
 import glob 
 from transformers import BertTokenizer
-from transformers import BertForSequenceClassification, AdamW, BertConfig
+from transformers import BertForSequenceClassification, BertConfig
 import random
 import pandas as pd
 from transformers import BertTokenizer
@@ -34,7 +34,7 @@ import numpy as np
 import threading
 import argparse
 import ast
-
+from torch.optim import AdamW
 
 
 def softmax(x):
@@ -528,6 +528,7 @@ if __name__=='__main__':
     
     
     args = my_parser.parse_args()
+    print(args)
     params['best_params']=False
     if(args.use_from_file == 'True'):
         with open(args.path,mode='r') as f:
@@ -579,6 +580,7 @@ if __name__=='__main__':
             
     #for att_lambda in [0.001,0.01,0.1,1,10,100]
     params['att_lambda']=float(args.attention_lambda)
+    print(f"Final Params in manual_training_inference.py: {params}")
     train_model(params,device)
 
 

@@ -1,4 +1,10 @@
-from transformers.modeling_bert import *
+# Add this at the top of the file
+import torch.nn as nn
+from torch.nn import CrossEntropyLoss
+
+# Then continue with the rest of the imports
+from transformers.models.bert.modeling_bert import *
+import torch
 from .utils import masked_cross_entropy
 
 

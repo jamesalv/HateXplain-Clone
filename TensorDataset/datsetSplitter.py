@@ -77,7 +77,9 @@ def encodeData(dataframe,vocab,params):
 
 
 def createDatasetSplit(params):
+    print(f"params in datset splitter: {params}")
     filename=set_name(params)
+    print(f"filename: {filename}, {filename[:-7]}")
     if path.exists(filename):
         ##### REMOVE LATER ######
         #dataset=collect_data(params)
