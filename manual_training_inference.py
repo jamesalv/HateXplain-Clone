@@ -193,6 +193,7 @@ def Eval_phase(params,which_files='test',model=None,test_dataloader=None,device=
     
     
 def train_model(params,device):
+    print(f"PARAMS: {params}")
     embeddings=None
     if(params['bert_tokens']):
         train,val,test=createDatasetSplit(params)
@@ -206,7 +207,7 @@ def train_model(params,device):
 #         print(y_test)
         encoder = LabelEncoder()
         encoder.classes_ = np.load(params['class_names'],allow_pickle=True)
-        params['weights']=class_weight.compute_class_weight('balanced',np.unique(y_test),y_test).astype('float32') 
+        params['weights'] = class_weight.compute_class_weight(class_weight='balanced', classes=np.unique(y_test), y=y_test).astype('float32')
         #params['weights']=np.array([len(y_test)/y_test.count(encoder.classes_[0]),len(y_test)/y_test.count(encoder.classes_[1]),len(y_test)/y_test.count(encoder.classes_[2])]).astype('float32') 
         
         
